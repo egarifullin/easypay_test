@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ru.evgendev.easypaytest.ui.home.HomeFragment"
+        android:name="ru.evgendev.easypaytest.ui.auth.AuthFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_auth" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
