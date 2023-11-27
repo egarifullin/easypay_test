@@ -98,4 +98,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilPassword"/>
+
+    <LinearLayout
+        android:id="@+id/llShadowAuth"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/shadow_all_content"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        android:elevation="30dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

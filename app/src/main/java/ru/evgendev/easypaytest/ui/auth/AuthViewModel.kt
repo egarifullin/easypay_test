@@ -1,13 +1,14 @@
 package ru.evgendev.easypaytest.ui.auth
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.evgendev.easypaytest.data.network.model.ResponseApi
+import ru.evgendev.easypaytest.data.network.repository.RepositoryImpl
 
 class AuthViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    private val repository = RepositoryImpl()
+
+    private val _authResponse = MutableLiveData<ResponseApi?>()
+    val authResponse: MutableLiveData<ResponseApi?> = _authResponse
 }

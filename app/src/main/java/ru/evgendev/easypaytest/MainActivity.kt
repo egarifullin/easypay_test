@@ -1,6 +1,9 @@
 package ru.evgendev.easypaytest
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -21,5 +24,12 @@ class MainActivity : AppCompatActivity() {
 
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+    }
+
+    companion object {
+        fun hideKeyboardFrom(context: Context, view: View) {
+            val imm = context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }
