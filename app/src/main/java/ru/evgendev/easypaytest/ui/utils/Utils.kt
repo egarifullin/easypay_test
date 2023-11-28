@@ -20,6 +20,7 @@ import androidx.security.crypto.MasterKey.Builder
 import androidx.security.crypto.MasterKey
 import ru.evgendev.easypaytest.R
 import ru.evgendev.easypaytest.data.network.model.PaymentDto
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -145,7 +146,7 @@ object Utils {
                 tvTitle.text = "-"
             }
             if (amount != null && amount != "") {
-                tvAmount.text = amount.toString()
+                tvAmount.text = BigDecimal(amount.toString()).toString()
                 tvAmount.visibility = View.VISIBLE
                 tvAmountTitle.visibility = View.VISIBLE
             } else {

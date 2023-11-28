@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.evgendev.easypaytest.data.network.model.PaymentDto
 import ru.evgendev.easypaytest.databinding.ItemPaymentBinding
 import ru.evgendev.easypaytest.ui.utils.Utils
+import java.math.BigDecimal
 
 class PaymentAdapter :
     ListAdapter<PaymentDto, PaymentAdapter.PaymentViewHolder>(PaymentDiffCallback) {
@@ -35,7 +36,7 @@ class PaymentAdapter :
                     tvTitlePayment.text = "-"
                 }
                 if (amount != null && amount != "") {
-                    tvAmountPayment.text = amount.toString()
+                    tvAmountPayment.text = BigDecimal(amount.toString()).toString()
                     tvAmountPayment.visibility = View.VISIBLE
                 } else {
                     tvAmountPayment.visibility = View.GONE
