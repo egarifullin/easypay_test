@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_auth" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_payments"
         android:name="ru.evgendev.easypaytest.ui.payments.PaymentsFragment"
         android:label="@string/title_payments"
         tools:layout="@layout/fragment_payments" />

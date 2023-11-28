@@ -7,7 +7,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,12 +26,9 @@ class AuthFragment : Fragment() {
     private var navController: NavController? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        authViewModel =
-            ViewModelProvider(this)[AuthViewModel::class.java]
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         _binding = FragmentAuthBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,17 +38,26 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = NavHostFragment.findNavController(this)
         setupView()
+        authViewModel.toastMsg.observe(viewLifecycleOwner, Observer {
+            if (it == "") {
+                navController?.navigate(R.id.navigation_payments)
+            } else {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun setupView() {
         binding.btnlogin.setOnClickListener(View.OnClickListener {
             MainActivity.hideKeyboardFrom(requireContext(), binding.tietUserName)
             if (!isErrorInEnterSymbol()) {
-                // TODO make login to api
+                authViewModel.login(
+                    binding.tietUserName.text.toString(),
+                    binding.tietPassword.text.toString()
+                )
             }
         })
         resetErrors()
-
     }
 
     private fun isErrorInEnterSymbol(): Boolean {
@@ -59,14 +67,14 @@ class AuthFragment : Fragment() {
 
         if (userNameText.isEmpty()) {
             binding.tilUserName.error = "Это поле должно быть заполнено!"
-            binding.tilUserName.boxBackgroundColor =
-                resources.getColor(R.color.red_light)
+            binding.tilUserName.boxBackgroundColor = resources.getColor(R.color.red_light)
+            binding.tilUserName.boxBackgroundColor = resources.getColor(R.color.transparent)
             isError = true
         }
         if (passwordText.isEmpty()) {
             binding.tilPassword.error = "Это поле должно быть заполнено!"
-            binding.tilPassword.boxBackgroundColor =
-                resources.getColor(R.color.red_light)
+            binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.red_light)
+            binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.transparent)
             isError = true
         }
         return isError

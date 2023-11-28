@@ -2,13 +2,46 @@ package ru.evgendev.easypaytest.ui.auth
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.evgendev.easypaytest.data.network.model.ResponseApi
+import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import kotlinx.coroutines.launch
+import ru.evgendev.easypaytest.data.network.model.TokenDto
 import ru.evgendev.easypaytest.data.network.repository.RepositoryImpl
 
 class AuthViewModel : ViewModel() {
 
     private val repository = RepositoryImpl()
 
-    private val _authResponse = MutableLiveData<ResponseApi?>()
-    val authResponse: MutableLiveData<ResponseApi?> = _authResponse
+    private val _toastMsg = MutableLiveData<String>()
+    val toastMsg: MutableLiveData<String> = _toastMsg
+
+    fun login(userName: String, password: String) {
+        viewModelScope.launch {
+            try {
+                val paramObject = JsonObject()
+                paramObject.addProperty("login", userName)
+                paramObject.addProperty("password", password)
+
+                val responseApi = repository.login(paramObject)
+                if (responseApi?.isSuccessful == true) {
+                    if (responseApi.body()?.success.equals("true")) {
+                        val gson = Gson()
+                        val tokenResponse = gson.fromJson(
+                            responseApi.body()?.response.toString(),
+                            TokenDto::class.java
+                        )
+                        //TODO save token
+                        _toastMsg.value = ""
+                    } else {
+                        _toastMsg.value = "Ошибка авторизации"
+                    }
+                } else {
+                    _toastMsg.value = "Ошибка авторизации"
+                }
+            } catch (e: Exception) {
+                _toastMsg.value = "Ошибка авторизации"
+            }
+        }
+    }
 }
