@@ -1,7 +1,7 @@
 package ru.evgendev.easypaytest.data.network.model
 
-data class ResponseApi(
+data class ResponseApi <T>(
     val success: String,
-    val response: Any?,
+    val response: T,
     val error: ErrorDto?
 )

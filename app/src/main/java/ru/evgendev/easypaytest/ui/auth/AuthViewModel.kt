@@ -17,8 +17,8 @@ class AuthViewModel : ViewModel() {
 
     private val repository = RepositoryImpl()
 
-    private val _toastMsg = MutableLiveData<String>()
-    val toastMsg: MutableLiveData<String> = _toastMsg
+    private val _errorMsg = MutableLiveData<String>()
+    val errorMsg: MutableLiveData<String> = _errorMsg
 
     fun login(context: Context, userName: String, password: String) {
         viewModelScope.launch {
@@ -30,22 +30,16 @@ class AuthViewModel : ViewModel() {
                 val responseApi = repository.login(paramObject)
                 if (responseApi?.isSuccessful == true) {
                     if (responseApi.body()?.success.equals("true")) {
-                        val gson = Gson()
-                        val tokenResponse = gson.fromJson(
-                            responseApi.body()?.response.toString(),
-                            TokenDto::class.java
-                        )
-                        Utils.writeTokenToSharedPref(tokenResponse.token)
-                        Log.i("token", tokenResponse.token)
-                        _toastMsg.value = ""
+                        Utils.writeTokenToSharedPref(responseApi.body()?.response?.token?:"")
+                        _errorMsg.value = ""
                     } else {
-                        _toastMsg.value = context.resources.getString(R.string.login_error)
+                        _errorMsg.value = context.resources.getString(R.string.login_error)
                     }
                 } else {
-                    _toastMsg.value = context.resources.getString(R.string.login_error)
+                    _errorMsg.value = context.resources.getString(R.string.login_error)
                 }
             } catch (e: Exception) {
-                _toastMsg.value = context.resources.getString(R.string.login_error)
+                _errorMsg.value = context.resources.getString(R.string.login_error)
             }
         }
     }

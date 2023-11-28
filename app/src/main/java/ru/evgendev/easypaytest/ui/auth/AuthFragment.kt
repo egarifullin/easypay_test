@@ -37,8 +37,9 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = NavHostFragment.findNavController(this)
         setupView()
-        authViewModel.toastMsg.observe(viewLifecycleOwner, Observer {
+        authViewModel.errorMsg.observe(viewLifecycleOwner, Observer {
             if (it == "") {
+                navController?.popBackStack()
                 navController?.navigate(R.id.navigation_payments)
             } else {
                 Utils.showErrorDialog(
@@ -72,13 +73,11 @@ class AuthFragment : Fragment() {
         if (userNameText.isEmpty()) {
             binding.tilUserName.error = "Это поле должно быть заполнено!"
             binding.tilUserName.boxBackgroundColor = resources.getColor(R.color.red_light)
-            binding.tilUserName.boxBackgroundColor = resources.getColor(R.color.transparent)
             isError = true
         }
         if (passwordText.isEmpty()) {
             binding.tilPassword.error = "Это поле должно быть заполнено!"
             binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.red_light)
-            binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.transparent)
             isError = true
         }
         return isError
@@ -92,6 +91,7 @@ class AuthFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.tilUserName.error = null
+                binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.transparent)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -104,6 +104,7 @@ class AuthFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.tilPassword.error = null
+                binding.tilPassword.boxBackgroundColor = resources.getColor(R.color.transparent)
             }
 
             override fun afterTextChanged(s: Editable) {

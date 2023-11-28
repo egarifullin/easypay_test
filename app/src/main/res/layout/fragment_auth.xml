@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:hint="@string/user_name"
         android:layout_marginBottom="5dp"
+        android:hint="@string/user_name"
         android:inputType="phone"
         app:boxCornerRadiusBottomEnd="15dp"
         app:boxCornerRadiusBottomStart="15dp"
@@ -31,9 +31,9 @@
         app:endIconDrawable="@drawable/ic_cross"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietUserName"
@@ -42,8 +42,8 @@
             android:gravity="top"
             android:inputType="text"
             android:maxLength="50"
-            android:textCursorDrawable="@drawable/cursor_color"
             android:textColor="@drawable/edittext_text_data_selector"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             android:inputType="textPassword"
-            android:textCursorDrawable="@drawable/cursor_color"
             android:textColor="@drawable/edittext_text_data_selector"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,20 +97,21 @@
         app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilPassword"/>
+        app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
     <LinearLayout
         android:id="@+id/llShadowAuth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:background="@color/shadow_all_content"
+        android:elevation="30dp"
         android:orientation="horizontal"
         android:visibility="invisible"
-        android:elevation="30dp"
-        android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
