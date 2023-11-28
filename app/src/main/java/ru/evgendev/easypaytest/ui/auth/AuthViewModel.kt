@@ -1,5 +1,6 @@
 package ru.evgendev.easypaytest.ui.auth
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
 import ru.evgendev.easypaytest.data.network.model.TokenDto
 import ru.evgendev.easypaytest.data.network.repository.RepositoryImpl
+import ru.evgendev.easypaytest.ui.utils.Utils
 
 class AuthViewModel : ViewModel() {
 
@@ -31,7 +33,8 @@ class AuthViewModel : ViewModel() {
                             responseApi.body()?.response.toString(),
                             TokenDto::class.java
                         )
-                        //TODO save token
+                        Utils.writeTokenToSharedPref(tokenResponse.token)
+                        Log.i("token", tokenResponse.token)
                         _toastMsg.value = ""
                     } else {
                         _toastMsg.value = "Ошибка авторизации"

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/transparent">
 
     <androidx.cardview.widget.CardView
@@ -27,10 +28,11 @@
                 android:src="@drawable/ic_error" />
 
             <TextView
+                android:id="@+id/tvTitleErrorDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/login_error"
+                tools:text="@string/login_error"
                 android:textAlignment="center"
                 android:textColor="@color/grey_nav_icon"
                 android:textSize="24dp"
@@ -38,17 +40,18 @@
 
 
             <TextView
+                android:id="@+id/tvTextErrorDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/wrong_login_password"
+                tools:text="@string/wrong_login_password"
                 android:textAlignment="center"
                 android:textColor="@color/grey_text"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnOkErrorDialogDeleteProfile"
+                android:id="@+id/btnCloseErrorDialog"
                 style="@style/activeButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

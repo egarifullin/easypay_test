@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment
 import ru.evgendev.easypaytest.MainActivity
 import ru.evgendev.easypaytest.R
 import ru.evgendev.easypaytest.databinding.FragmentAuthBinding
+import ru.evgendev.easypaytest.ui.utils.Utils
 
 class AuthFragment : Fragment() {
 
@@ -42,7 +43,12 @@ class AuthFragment : Fragment() {
             if (it == "") {
                 navController?.navigate(R.id.navigation_payments)
             } else {
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                Utils.showErrorDialog(
+                    requireContext(),
+                    resources.getString(R.string.login_error),
+                    resources.getString(R.string.wrong_login_password),
+                    binding.llShadowAuth
+                )
             }
         })
     }
@@ -52,8 +58,7 @@ class AuthFragment : Fragment() {
             MainActivity.hideKeyboardFrom(requireContext(), binding.tietUserName)
             if (!isErrorInEnterSymbol()) {
                 authViewModel.login(
-                    binding.tietUserName.text.toString(),
-                    binding.tietPassword.text.toString()
+                    binding.tietUserName.text.toString(), binding.tietPassword.text.toString()
                 )
             }
         })
@@ -78,11 +83,6 @@ class AuthFragment : Fragment() {
             isError = true
         }
         return isError
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun resetErrors() {
@@ -110,5 +110,10 @@ class AuthFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
             }
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
