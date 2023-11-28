@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">EasyPay Test</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_auth">Авторизация</string>
+    <string name="title_payments">Список платежей</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="go_auth">Войти</string>
+    <string name="login_error">Ошибка авторизации</string>
+    <string name="wrong_login_password">Неверное имя пользователя или неверный пароль</string>
+    <string name="close">Закрыть</string>
+    <string name="error_load_payments">Ошибка загрузки платежей</string>
+    <string name="title_history_payments">История платежей</string>
+    <string name="logout">Выйти из профиля</string>
+    <string name="id">Id:</string>
+    <string name="payment_purpose">Назначение платежа:</string>
+    <string name="amount">Сумма:</string>
+    <string name="date">Дата:</string>
 </resources>

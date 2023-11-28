@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF232631</color>
+    <color name="blue">#FF1733C7</color>
+    <color name="grey_text">#FF757575</color>
+    <color name="grey_nav_icon">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="red_error">#FFFD2C1A</color>
+    <color name="red_light">#0DFD2C1A</color>
+    <color name="green_ok">#FF27AE60</color>
+    <color name="blue_light">#FFF2F7FE</color>
+    <color name="text_card_color">#FFFFFFFF</color>
+    <color name="very_light_blue">#80757575</color>
+    <color name="alpha_40">#80000000</color>
+    <color name="alpha_white_40">#90000000</color>
+    <color name="disabled_blue">#FFCCE1FA</color>
+    <color name="notification_read_text_color">#FF757575</color>
+    <color name="alpha_white">#D9000000</color>
+    <color name="color_for_blue_button">#FF232631</color>
+    <color name="color_for_light_button">#FFFFFFFF</color>
+    <color name="shadow_all_content">#80757575</color>
+    <color name="main_background_color">#FF000000</color>
+    <color name="background_back_button">#FF232631</color>
+    <color name="background_barcode_card">#FFFFFFFF</color>
+    <color name="barcode_text_color">#FF232631</color>
+    <color name="back_progress_bar">#80757575</color>
+    <color name="stroke_circle_progress_bar">#FF000000</color>
+    <color name="progressbar_card_color">#FF232631</color>
+</resources>
