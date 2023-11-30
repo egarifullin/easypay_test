@@ -26,7 +26,6 @@ class PaymentsViewModel : ViewModel() {
                 val response = repository.getPayments(token)
                 if (response?.isSuccessful == true) {
                     if (response.body()?.success.equals("true")) {
-                        Log.i("token", response.body()?.response?.size.toString())
                         _payments.value = response.body()?.response
                         _errorMsg.value = ""
                     } else {
